@@ -18,7 +18,7 @@ public class ConexaoMySql {
 			String drivername = "com.mysql.jdbc.Driver";
 			Class.forName(drivername);
 			
-			String nomeServidor = "127.0.0.1";
+			String nomeServidor = "127.0.0.1:3306";
 			String bancoDeDados = "SistemaDetran";
 			String url = "jdbc:mysql://" + nomeServidor + "/" + bancoDeDados;
 			String usuario = "root";

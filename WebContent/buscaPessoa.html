@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Busca Pessoa</title>
+</head>
+<body>
+<form action="buscaPessoa.jsp" method="post">
+
+<h1> Busca </h1>
+		<p>
+		Tipo:&nbsp;<select name="tipoBusca" size="3"><option selected="selected" value="0">Todos</option><option value="1">Nome (Parcial)</option><option value="2">CPF</option></select></p>
+		<p>
+		Nome:&nbsp;<input maxlength="80" name="buscaNome" size="60" type="text" value="Insira um nome completo ou parcial" /></p>
+		<p>
+		CPF:&nbsp;<input maxlength="11" name="buscaCPF" size="30" type="text" value="Insira o CPF que deseja" /></p>
+		<p>
+		<input type="submit" name="submit" value="Enviar">
+</form>
+</body>
+</html>

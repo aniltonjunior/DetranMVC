@@ -1,6 +1,7 @@
 package br.pucpr.trabalho5;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Vector;
 
@@ -27,6 +28,7 @@ public class PessoaDAO {
 			
 		} catch (Exception e) {
 			System.out.println("Ocorreu um erro ao tentar inserir.");
+			System.out.println("SQL: " + sql);
 			System.out.println(e.toString());
 		}
 	}
@@ -51,13 +53,14 @@ public class PessoaDAO {
 			
 		} catch (Exception e) {
 			System.out.println("Ocorreu um erro ao tentar atualizar.");
+			System.out.println("SQL: " + sql);
 			System.out.println(e.toString());
 		}
 	}
 
 	public void removerPessoa(int _id) {
 		
-		String sql = "REMOVE FROM PESSOA WHERE id = '" + _id + "'";
+		String sql = "DELETE FROM PESSOA WHERE id = '" + _id + "'";
 		
 		Connection conexao = ConexaoMySql.getConexaoMySql();
 		
@@ -74,11 +77,12 @@ public class PessoaDAO {
 			
 		} catch (Exception e) {
 			System.out.println("Ocorreu um erro ao tentar remover.");
+			System.out.println("SQL: " + sql);
 			System.out.println(e.toString());
 		}
 	}
 	
-	public Vector<Pessoa> buscaPessoa(int _tipo, String _busca) {
+	public Vector<Pessoa> buscaPessoa(int _tipo, String _busca[]) {
 		Vector<Pessoa> resultado = new Vector<Pessoa>();
 		String sql;
 		switch (_tipo) {
@@ -86,10 +90,13 @@ public class PessoaDAO {
 			sql = "SELECT * FROM PESSOA";
 			break;
 		case 1:
-			sql = "SELECT * FROM PESSOA WHERE preNome like %" + _busca;
+			sql = "SELECT * FROM PESSOA WHERE preNome = '" + _busca[0] + "'";
+			if (_busca[1] != null) {
+				sql += " AND posNome = '" + _busca[1] + "'";
+			}
 			break;
 		case 2:
-			sql = "SELECT * FROM PESSOA WHERE nCPF = '" + _busca + "'";
+			sql = "SELECT * FROM PESSOA WHERE nCPF = '" + _busca[0] + "'";
 			break;
 		default:
 			System.out.println("Opção não existente.");
@@ -101,7 +108,19 @@ public class PessoaDAO {
 		try {
 			Statement comando = conexao.createStatement();
 			
-			comando.executeUpdate(sql);
+			ResultSet resultadoSQL = comando.executeQuery(sql);
+			
+			while (resultadoSQL.next()) {
+				String _preNome = resultadoSQL.getString("preNome");
+				String _posNome = resultadoSQL.getString("posNome");
+				String _nCPF = resultadoSQL.getString("nCPF");
+				String _endereco = resultadoSQL.getString("enderecoCompleto");
+				if (_endereco == null) {
+					resultado.add(new Pessoa(_preNome, _posNome, _nCPF));
+				} else {
+					resultado.add(new Pessoa(_preNome, _posNome, _nCPF, _endereco));
+				}
+			}
 			
 			comando.close();
 			
@@ -111,6 +130,7 @@ public class PessoaDAO {
 			
 		} catch (Exception e) {
 			System.out.println("Ocorreu um erro na busca.");
+			System.out.println("SQL: " + sql);
 			System.out.println("Tipo: "+ _tipo + " e parametro: " + _busca);
 			System.out.println(e.toString());
 		}
