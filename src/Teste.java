@@ -1,6 +1,11 @@
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import br.pucpr.trabalho5.Pessoa;
 import br.pucpr.trabalho5.PessoaBO;
+import br.pucpr.trabalho5.Veiculo;
+import br.pucpr.trabalho5.VeiculoBO;
 
 public class Teste {
 
@@ -8,7 +13,7 @@ public class Teste {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		PessoaBO bo = new PessoaBO();
+		/*PessoaBO bo = new PessoaBO();
 		
 		bo.inserirPessoa(new Pessoa ("Jose", "Carlos", "00180859093"));
 		
@@ -18,7 +23,26 @@ public class Teste {
 		
 		bo.removerPessoa(3);
 		
-		mostraTodos(bo);
+		mostraTodos(bo);*/
+		
+		VeiculoBO bo = new VeiculoBO();
+		
+		bo.inserirVeiculo(new Veiculo("BGD-3553", "Volkswagen", "Voyage", "1985",1));
+		//bo.removerVeiculo(2);
+		
+		
+	}
+	
+	public static boolean verificaPlaca (String placaCompleta) {
+		
+		Pattern pattern = Pattern.compile("[a-zA-Z]{3}-?[0-9]{4}");
+		Matcher matcher = pattern.matcher(placaCompleta);
+		
+		if(matcher.find()){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public static void mostraTodos(PessoaBO bo) {
