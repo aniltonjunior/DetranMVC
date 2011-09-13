@@ -9,10 +9,10 @@ public class VeiculoDAO {
 	
 	public void inserirVeiculo(Veiculo _veiculo) {
 		
-		String sql = "INSERT INTO VEICULO (placaVeiculo, marcaVeiculo, modeloVeiculo, anoVeiculo, tipoVeiculo) VALUES " +
+		String sql = "INSERT INTO VEICULO (placaVeiculo, marcaVeiculo, modeloVeiculo, anoVeiculo, propVeiculo) VALUES " +
 				     "('" + _veiculo.getPlacaVeiculo() + "', '" + _veiculo.getMarcaVeiculo() + "', " +
 				     "'" + _veiculo.getModeloVeiculo() + "','" + _veiculo.getAnoVeiculo() + "', " +
-				     "'" + _veiculo.getTipoVeiculo() + "')";
+				     _veiculo.getPropriVeiculo() +"')";
 		
 		Connection conexao = ConexaoMySql.getConexaoMySql();
 		
@@ -38,7 +38,7 @@ public class VeiculoDAO {
 		
 		String sql = "UPDATE VEICULO SET placaVeiculo '" + _veiculo.getPlacaVeiculo() + "', marcaVeiculo = '" + _veiculo.getMarcaVeiculo() + "', " +
 				     "modeloVeiculo = '" + _veiculo.getModeloVeiculo() + "',  anoVeiculo = '" + _veiculo.getAnoVeiculo() + "', " +
-				     "tipoVeiculo = '" + _veiculo.getTipoVeiculo() + "' WHERE id = '" + _id + "'";
+				     "', propVeiculo = '" + _veiculo.getPropriVeiculo() + "' WHERE id = '" + _id + "'";
 		
 		Connection conexao = ConexaoMySql.getConexaoMySql();
 		

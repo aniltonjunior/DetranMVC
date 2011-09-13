@@ -5,14 +5,14 @@ public class Veiculo {
 	private String marcaVeiculo;
 	private String modeloVeiculo;
 	private String anoVeiculo;
-	private int tipoVeiculo;
+	private int propriVeiculo;
 	
-	public Veiculo(String placa, String marca, String modelo, String ano, int tipo) {
+	public Veiculo(String placa, String marca, String modelo, String ano, int propVeiculo) {
 		this.placaVeiculo = placa;
 		this.marcaVeiculo = marca;
 		this.modeloVeiculo = modelo;
 		this.anoVeiculo = ano;
-		this.tipoVeiculo = tipo;
+		this.propriVeiculo = propVeiculo;
 	}
 	
 	public void setPlacaVeiculo(String placaVeiculo) {
@@ -47,11 +47,11 @@ public class Veiculo {
 		return anoVeiculo;
 	}
 
-	public void setTipoVeiculo(int tipoVeiculo) {
-		this.tipoVeiculo = tipoVeiculo;
+	public int getPropriVeiculo() {
+		return propriVeiculo;
 	}
 
-	public int getTipoVeiculo() {
-		return tipoVeiculo;
+	public void setPropriVeiculo(int propriVeiculo) {
+		this.propriVeiculo = propriVeiculo;
 	}
 }

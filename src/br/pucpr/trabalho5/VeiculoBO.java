@@ -13,14 +13,14 @@ public class VeiculoBO {
 	}
 	
 	public void inserirVeiculo(Veiculo _veiculo) {
-		if (_veiculo == null || _veiculo.getModeloVeiculo() == "") {
+		if (_veiculo == null || _veiculo.getModeloVeiculo() == "" || _veiculo.getPropriVeiculo() == 0) {
 			System.out.println("Dever‡ ser inserido um objeto Veiculo n‹o nulo.");
 			return;
 		}
 		
 		_veiculo.setPlacaVeiculo(processaPlaca(_veiculo.getPlacaVeiculo()));
 		
-		boolean _existe = buscaMesmaVeiculo(_veiculo);
+		boolean _existe = buscaMesmoVeiculo(_veiculo);
 		
 		boolean _placaincorreta = verificaPlaca(_veiculo.getPlacaVeiculo());
 		
@@ -65,7 +65,7 @@ public class VeiculoBO {
 		return dao.buscaVeiculo(_tipo, _nbusca);
 	}
 	
-	private boolean buscaMesmaVeiculo(Veiculo _busca) {
+	private boolean buscaMesmoVeiculo(Veiculo _busca) {
 		String _placa = _busca.getPlacaVeiculo();
 		
 		boolean resultado;

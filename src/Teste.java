@@ -27,10 +27,10 @@ public class Teste {
 		
 		VeiculoBO bo = new VeiculoBO();
 		
-		bo.inserirVeiculo(new Veiculo("BGD-3553", "Volkswagen", "Voyage", "1985",1));
+		//bo.inserirVeiculo(new Veiculo("BGD-3553", "Volkswagen", "Voyage", "1985",1));
 		//bo.removerVeiculo(2);
-		
-		
+		//SELECT a.preNome, a.posNome, b.modeloVeiculo, b.anoVeiculo FROM PESSOA a, VEICULO b WHERE a.id = b.propVeiculo
+				
 	}
 	
 	public static boolean verificaPlaca (String placaCompleta) {
