@@ -1,0 +1,40 @@
+html{
+	font-size: 100%
+}
+
+body{
+	font: normal 0.75em/1.5 Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+input, textarea{
+	font: normal 1em Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+pre, code, kbd{
+	font: 1em Courier, serif;
+}
+
+h1{
+	font: normal 2em/1 "Bank Gothic", Arial, Helvetica, sans-serif;
+}
+
+h2{
+	font: normal 2em/1 "Bank Gothic", Arial, Helvetica, sans-serif;
+}
+
+h3{
+	font: normal 1.25em/1 "Bank Gothic", Arial, Helvetica, sans-serif;
+}
+
+h4{
+	font: bold 1.1 Verdana, Geneva, Arial, Helvetica, sans-serif;
+}
+
+h5, h6{
+	font: bold 1 Arial, Helvetica, sans-serif;
+}
+
+#main-navigation{
+	font: 400 1.4em "Bank Gothic", Arial, Helvetica, sans-serif;
+}
+

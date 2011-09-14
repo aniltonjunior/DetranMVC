@@ -1,0 +1,116 @@
+/* Fonts */
+@import url(fonts.css);
+
+/* Elements */
+html, body, ul, li, dt, dd, h1, h2, h3, h4, h5, h6{ 
+	margin: 0;
+	padding: 0;
+}
+
+a{
+	color: #000;
+}
+
+a:hover{
+	background: #CCC;
+}
+
+body{
+	color: #38372c;
+	background: #484256;
+}
+
+dd{
+	margin-bottom: 1em;
+}
+
+dt{
+	clear: both;
+	font-weight: bold;
+}
+
+dt code{
+	font-weight: bold;
+}
+
+h4{
+	margin: 1em 0;
+}
+
+img{
+	border: 0;
+}
+
+input{	
+	vertical-align: middle;
+}
+
+input, textarea{
+	border: 1px solid #484256;
+	padding: 2px 1px;	
+}
+
+input[type=text]:focus, textarea:focus{
+	background: #CCC;
+}
+
+label{
+	cursor: pointer;
+}
+
+p, ul, ol, dl{
+	margin: 0 0 1em;
+}
+
+pre{
+	width: 100%;
+	overflow: auto;
+}
+
+/* Container*/
+#container{
+	position: relative;
+	min-width: 600px;
+	max-width: 1000px;
+	min-height: 828px;
+	background: #FFF;
+	border: 1px solid #000;
+	border-width: 0 1px;
+	margin: 0 auto;
+	padding: 3em;
+}
+
+/* Search result suggestions */
+#search-result-suggestions{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 300px;
+	background: #FFF;
+	border: 1px solid #484256;
+	display: none;
+}
+
+#search-result-suggestions h4{
+	margin: 0.25em 0;
+	padding: 0.25em 1em;
+}
+
+#search-results ul{
+	list-style: none;
+	margin-bottom: 1em;
+}
+
+#search-results a{
+	display: block;
+	padding: 0.25em 1em;
+}
+
+#search-results a.selected{
+	color: #FFF;
+	background: #484256;
+}
+
+#search-results p{
+	margin-bottom: 0.5em;
+}

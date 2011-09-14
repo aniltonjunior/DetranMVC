@@ -98,6 +98,8 @@ public class PessoaDAO {
 		case 2:
 			sql = "SELECT * FROM PESSOA WHERE nCPF = '" + _busca[0] + "'";
 			break;
+		case 3:
+			sql = "SELECT * FROM PESSOA WHERE id = '" + _busca[0] + "'";
 		default:
 			System.out.println("Opção não existente.");
 			return null;

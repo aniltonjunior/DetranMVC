@@ -1,0 +1,30 @@
+/*
+Images are wrapped in divs classed "flickr_badge_image" with ids
+"flickr_badge_imageX" where "X" is an integer specifying ordinal position.
+Below are some styles to get you started!
+*/
+body{
+	color: red !important;
+}
+
+#flickr_badge_uber_wrapper {float: left; text-align:center; width:150px; padding-right: 1em;}
+#flickr_badge_wrapper {padding:10px 0 10px 0;}
+.flickr_badge_image {margin:0 10px 10px 10px;}
+.flickr_badge_image img {border: 1px solid black !important;}
+#flickr_badge_source {text-align:left; margin:0 10px 0 10px;}
+#flickr_badge_icon {float:left; margin-right:5px;}
+#flickr_www {display:block; padding:0 10px 0 10px !important; font: 11px Arial, Helvetica, Sans serif !important; color:#3993ff !important;}
+#flickr_badge_uber_wrapper a:hover,
+#flickr_badge_uber_wrapper a:link,
+#flickr_badge_uber_wrapper a:active,
+#flickr_badge_uber_wrapper a:visited {text-decoration:none !important; background:inherit !important;color:#3993ff;}
+#flickr_badge_wrapper {}
+#flickr_badge_source {padding:0 !important; font: 11px Arial, Helvetica, Sans serif !important; color:#666666 !important;}
+
+.flick{
+	color: #3993ff;
+}
+
+.flick-r{
+	color: #ff1c92;
+}

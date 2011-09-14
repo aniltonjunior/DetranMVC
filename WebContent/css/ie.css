@@ -1,0 +1,26 @@
+/*div#container{
+	width: 800px;
+	width: expression(document.documentElement.clientWidth > 1210? "1200px" : document.body.clientWidth < 410? "400px" : "auto");
+}*/
+
+#container{
+	width: 1000px;	
+}
+
+li.author{
+	height: 12em;	
+}
+
+#content{
+	height: 1800px;
+}
+
+#secondary-navigation a{
+	width: 99%;
+}	
+
+.glt-elm{
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=90);
+}
+
+

@@ -1,34 +1,34 @@
 package br.pucpr.trabalho5;
 
 public class Transferencia {
-	private Pessoa vendedorTransf;
-	private Pessoa compradorTransf;
-	private Veiculo veiculoTransf;
+	private int vendedorTransf;
+	private int compradorTransf;
+	private int veiculoTransf;
 	private double valorTransf;
 	
-	public Transferencia(Pessoa vendedor, Pessoa comprador, Veiculo produto, Double valor) {
+	public Transferencia(int vendedor, int comprador, int produto, Double valor) {
 		this.vendedorTransf = vendedor;
 		this.compradorTransf = comprador;
 		this.veiculoTransf = produto;
 		this.valorTransf = valor;
 	}
 	
-	public void setVendedorTransf(Pessoa vendedorTransf) {
+	public void setVendedorTransf(int vendedorTransf) {
 		this.vendedorTransf = vendedorTransf;
 	}
-	public Pessoa getVendedorTransf() {
+	public int getVendedorTransf() {
 		return vendedorTransf;
 	}
-	public void setCompradorTransf(Pessoa compradorTransf) {
+	public void setCompradorTransf(int compradorTransf) {
 		this.compradorTransf = compradorTransf;
 	}
-	public Pessoa getCompradorTransf() {
+	public int getCompradorTransf() {
 		return compradorTransf;
 	}
-	public void setVeiculoTransf(Veiculo veiculoTransf) {
+	public void setVeiculoTransf(int veiculoTransf) {
 		this.veiculoTransf = veiculoTransf;
 	}
-	public Veiculo getVeiculoTransf() {
+	public int getVeiculoTransf() {
 		return veiculoTransf;
 	}
 	public void setValorTransf(double valorTransf) {

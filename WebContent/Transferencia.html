@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Detran - MVC</title>
+	<script type="text/javascript" src="js/ajaxSuggestions.js"></script>
+	<style type="text/css" media="screen">
+		@import url("css/ajax-suggestions.css");
+	</style>
+</head>
+<body>
+<h1>Realize sua Transferencia</h1>
+<form name="transferencia" action="transferenciaCompleta.jsp">
+	<select name="comprador" onchange="mostraVeiculo(this.value)"> 
+		<option value="-1">Selecione</option>
+	</select> <br>
+	<input type="text" name="vendedor" class="ajax-suggestion buscaPessoa.html" value="Insira o nome do vendedor aqui ..." size="40"> <br>
+	<input type="text" name="valor" value="Insira valor do negocio ..." size="20"> <br>
+</form>
+
+<div id="search-result-suggestions">
+	<h4>Resultados</h4>
+	<div id="search-results"></div>
+</div>
+</body>
+</html>

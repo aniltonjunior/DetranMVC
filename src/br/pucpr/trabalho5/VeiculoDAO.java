@@ -97,6 +97,8 @@ public class VeiculoDAO {
 		case 2:
 			sql = "SELECT * FROM VEICULO WHERE placaVeiculo = '" + _busca + "'";
 			break;
+		case 3:
+			sql = "SELECT * FROM VEICULO WHERE id = '" + _busca + "'";
 		default:
 			System.out.println("Opção não existente.");
 			return null;
@@ -114,8 +116,8 @@ public class VeiculoDAO {
 				String _marcaVeiculo = resultadoSQL.getString("marcaVeiculo");
 				String _modeloVeiculo = resultadoSQL.getString("modeloVeiculo");
 				String _anoVeiculo = resultadoSQL.getString("anoVeiculo");
-				String _tipoVeiculo = resultadoSQL.getString("tipoVeiculo");
-				resultado.add(new Veiculo(_placaVeiculo, _marcaVeiculo, _modeloVeiculo, _anoVeiculo, Integer.parseInt(_tipoVeiculo)));
+				String _propVeiculo = resultadoSQL.getString("propVeiculo");
+				resultado.add(new Veiculo(_placaVeiculo, _marcaVeiculo, _modeloVeiculo, _anoVeiculo, Integer.parseInt(_propVeiculo)));
 			}
 			
 			comando.close();

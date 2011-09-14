@@ -6,14 +6,24 @@ import java.sql.Statement;
 import java.util.Vector;
 
 public class TransferenciaDAO {
+	private VeiculoDAO _veiculos;
 	
+	public void TransferenciasDAO() {
+		this._veiculos = new VeiculoDAO();
+	}
 	public void inserirTransferencia(Transferencia _transferencia) {
 		
-		String sql = "INSERT INTO VEICULO (vendedorTransf, compradorTransf, veiculoTransf, valorTransf) VALUES " +
+		String sql = "INSERT INTO TRANSFERENCIA (vendedorTransf, compradorTransf, veiculoTransf, valorTransf) VALUES " +
 				     "('" + _transferencia.getVendedorTransf() + "', '" + _transferencia.getCompradorTransf() + "', " +
 				     "'" + _transferencia.getVeiculoTransf() + "','" + _transferencia.getValorTransf() + "')";
 		
 		Connection conexao = ConexaoMySql.getConexaoMySql();
+		
+		int _idVeiculo = _transferencia.getVeiculoTransf();
+		Vector<Veiculo> _retorno = _veiculos.buscaVeiculo(3, String.valueOf(_idVeiculo));
+		Veiculo _novo = _retorno.firstElement();
+		Veiculo _atualizado = new Veiculo (_novo.getPlacaVeiculo(),_novo.getMarcaVeiculo(), _novo.getModeloVeiculo(), _novo.getAnoVeiculo(), 0);
+		_veiculos.atualizarVeiculo(_atualizado, _idVeiculo);
 		
 		try {
 			Statement comando = conexao.createStatement();
@@ -60,7 +70,7 @@ public class TransferenciaDAO {
 		}
 	}
 
-	public void removerVeiculo(int _id) {
+	public void removerTransferencia(int _id) {
 		
 		String sql = "DELETE FROM TRANSFERENCIA WHERE id = '" + _id + "'";
 		
@@ -84,23 +94,10 @@ public class TransferenciaDAO {
 		}
 	}
 	
-	public Vector<Transferencia> buscaTransferencia(int _tipo, String _busca) {
-		Vector<Transferencia> resultado = new Vector<Transferencia>();
-		String sql;
-		switch (_tipo) {
-		case 0:
-			sql = "SELECT * FROM TRANSFERENCIA";
-			break;
-		case 1:
-			sql = "SELECT * FROM VEICULO WHERE modeloVeiculo like '" + _busca + "%'";
-			break;
-		case 2:
-			sql = "SELECT * FROM VEICULO WHERE placaVeiculo = '" + _busca + "'";
-			break;
-		default:
-			System.out.println("Opção não existente.");
-			return null;
-		}
+	public Vector<String[]> buscaVendedores() {
+		Vector<String[]> _resultado = new Vector<String[]>();
+		
+		String sql = "SELECT a.id, a.preNome, a.posNome FROM PESSOA a, VEICULO b WHERE a.id = b.propVeiculo";
 		
 		Connection conexao = ConexaoMySql.getConexaoMySql();
 		
@@ -110,12 +107,13 @@ public class TransferenciaDAO {
 			ResultSet resultadoSQL = comando.executeQuery(sql);
 			
 			while (resultadoSQL.next()) {
-				String _placaVeiculo = resultadoSQL.getString("placaVeiculo");
-				String _marcaVeiculo = resultadoSQL.getString("marcaVeiculo");
-				String _modeloVeiculo = resultadoSQL.getString("modeloVeiculo");
-				String _anoVeiculo = resultadoSQL.getString("anoVeiculo");
-				String _tipoVeiculo = resultadoSQL.getString("tipoVeiculo");
-				resultado.add(new Veiculo(_placaVeiculo, _marcaVeiculo, _modeloVeiculo, _anoVeiculo, Integer.parseInt(_tipoVeiculo)));
+				String _idPessoa = resultadoSQL.getString(1);
+				String _preNome = resultadoSQL.getString(2);
+				String _posNome = resultadoSQL.getString(3);
+				String[] nova = new String[2];
+				nova[0] = _idPessoa;
+				nova[1] = _preNome + " " + _posNome;
+				_resultado.add(nova);
 			}
 			
 			comando.close();
@@ -123,15 +121,89 @@ public class TransferenciaDAO {
 			conexao.close();
 			
 			System.out.println("SQL: " + sql);
+			System.out.println(_resultado);
 			
 		} catch (Exception e) {
 			System.out.println("Ocorreu um erro na busca.");
 			System.out.println("SQL: " + sql);
-			System.out.println("Tipo: "+ _tipo + " e parametro: " + _busca);
 			System.out.println(e.toString());
 		}
 		
-		return resultado;
+		return _resultado;
+	}
+	
+	public String buscaVeiculo(int id) {
+		String _resultado = null;
+		
+		String sql = "SELECT b.marcaVeiculo, b.modeloVeiculo, b.anoVeiculo , b.id FROM PESSOA a, VEICULO b WHERE a.id = b.propVeiculo AND a.id =" + id;
+		
+		Connection conexao = ConexaoMySql.getConexaoMySql();
+		
+		try {
+			Statement comando = conexao.createStatement();
+			
+			ResultSet resultadoSQL = comando.executeQuery(sql);
+			
+			while (resultadoSQL.next()) {
+				String _marca = resultadoSQL.getString(1);
+				String _modelo = resultadoSQL.getString(2);
+				String _ano = resultadoSQL.getString(3);
+				String _id = resultadoSQL.getString(4);
+				_resultado = _id + ":" + _marca + " - " + _modelo + "(" + _ano + ")";
+			}
+			
+			comando.close();
+			
+			conexao.close();
+			
+			System.out.println("SQL: " + sql);
+			System.out.println(_resultado);
+			
+		} catch (Exception e) {
+			System.out.println("Ocorreu um erro na busca.");
+			System.out.println("SQL: " + sql);
+			System.out.println(e.toString());
+		}
+		
+		return _resultado;
+	}
+	
+	public Vector<String[]> buscaCompradores() {
+		Vector<String[]> _resultado = new Vector<String[]>();
+		
+		String sql = "SELECT a.id, a.preNome, a.posNome FROM PESSOA a, VEICULO b WHERE a.id != b.propVeiculo";
+		
+		Connection conexao = ConexaoMySql.getConexaoMySql();
+		
+		try {
+			Statement comando = conexao.createStatement();
+			
+			ResultSet resultadoSQL = comando.executeQuery(sql);
+			
+			while (resultadoSQL.next()) {
+				String _idPessoa = resultadoSQL.getString(1);
+				String _preNome = resultadoSQL.getString(2);
+				String _posNome = resultadoSQL.getString(3);
+				String[] nova = new String[2];
+				nova[0] = _idPessoa;
+				nova[1] = _preNome + " " + _posNome;
+				_resultado.add(nova);
+			}
+			
+			comando.close();
+			
+			conexao.close();
+			
+			System.out.println("SQL: " + sql);
+			System.out.println(_resultado);
+			
+		} catch (Exception e) {
+			System.out.println("Ocorreu um erro na busca.");
+			System.out.println("SQL: " + sql);
+			System.out.println(e.toString());
+		}
+		
+		return _resultado;
 	}
 
 }
